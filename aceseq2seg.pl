@@ -151,7 +151,7 @@ foreach my $sample_idx (0..($num_files-1)){
       }
       else {
         $tcn_log = log($tcn)/log($round_ploidy) - 1;
-        $tcn_log = log($tcn)/log($round_ploidy/1.9999) - 1 if (($chr eq "Y"||$chr eq "X"||$chr eq "chrY"||$chr eq "chrX") && ($sex eq "male"));
+        $tcn_log = log($tcn*2)/log($round_ploidy) - 1 if (($chr eq "Y"||$chr eq "X"||$chr eq "chrY"||$chr eq "chrX") && ($sex eq "male"));
       }
       $tcn_log = (int($tcn_log*1000))/1000; 
 
