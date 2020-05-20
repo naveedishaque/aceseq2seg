@@ -16,8 +16,10 @@ Developed using perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linu
 
 ## usage
 
+```
   perl aceseq2seg.pl
         -f [comma separated input file list - REQUIRED]
         -n [comma separated sample names - DEFAULT: input file list]
         -l [log base, either 2 or 'given' - DEFAULT: given]
         -o [output file - DEFAULT: STDOUT]
+```
