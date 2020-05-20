@@ -118,6 +118,7 @@ print "sample\tchromosome\tstart_position\tend_position\tnum_markers\tlog2_seg_C
 foreach my $sample_idx (0..($num_files-1)){
   my $file = $files[$sample_idx];
   my $name = $names[$sample_idx];
+  my $sex = "female";
   
   my $fh;
   open $fh, $file or die "ERROR: could not open $file : $!\n$usage";
@@ -133,6 +134,9 @@ foreach my $sample_idx (0..($num_files-1)){
       # reset round_ploidy to defined log_base, unless sample sepcific ploidy are the log_base
       $round_ploidy = $log_base unless ($log_base eq "given")
     }
+    if ($line =~ m/\#assumed sex:(.*?)$/){
+      $sex = $1;
+    }
     unless ($line =~ m/^\#/){
       my @line_split = split('\t', $line);
       my ($chr, $str, $end, $tcn, $num_snps) = ($line_split[$chr_idx], $line_split[$str_idx], $line_split[$end_idx], $line_split[$tcn_idx], $line_split[$snp_idx]);
@@ -147,6 +151,7 @@ foreach my $sample_idx (0..($num_files-1)){
       }
       else {
         $tcn_log = log($tcn)/log($round_ploidy) - 1;
+        $tcn_log = log($tcn)/log($round_ploidy/2) - 1 (if ($chr eq "Y"||$chr eq "X"||$chr eq "chrY"||$chr eq "chrX") && ($sex eq "male"));
       }
       $tcn_log = (int($tcn_log*1000))/1000; 
 
