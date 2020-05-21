@@ -2,12 +2,13 @@
 
 A script to convert the output files from ACEseq to the seg format used as input for GISTIC.
 
- - Converts ACEseq files into seg files used by GISTIC
- - convests whole total copy number (TCN) values into log spac
- - log base is determined as the sample ploidy (or 2 if you assume diploid)
+ - converts ACEseq files into seg files used by GISTIC
+ - convests whole total copy number (TCN) values into log space
+ - [Dorett Odoni] gistic2 requires the segment copy number (seg.CN) to be given as log2(seg.CN) - 1. To account for varying base ploidies across a cohort, as well as still adjusting the numbers to be what Gistic2 expects, the seg.CN for the Gistic2 input file is calculated as:
+   - $tcn_log = log( log($ploidy^($tcn/$ploidy), $ploidy) *2, 2) - 1
  - homozygous deletions are set at a low number (-5)
  - homozygous deletions are determined when the TCN < 0.25
- - regions with less than 3 SNPs (i.e ACEseq cannot determine the TCN) are set to base ploidy
+ - regions with less than 5 SNPs (i.e ACEseq cannot determine the TCN) are set to base ploidy
  - chrX/Y for males are corrected (using double observed ploidy)
 
 ## software requirements dependecies
