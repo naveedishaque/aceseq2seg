@@ -150,11 +150,11 @@ foreach my $sample_idx (0..($num_files-1)){
         $tcn_log = $homo_del;
       }
       else {
-        $tcn_log = log($tcn)/log($round_ploidy) - 1;
-        $tcn_log = log($tcn*2)/log($round_ploidy) - 1 if (($chr eq "Y"||$chr eq "X"||$chr eq "chrY"||$chr eq "chrX") && ($sex eq "male"));
+        # rescale log change to reflect changes in log2 space
+        $tcn_log = log( log($round_ploidy**($tcn  /$round_ploidy))/log($round_ploidy) *2) / log(2) - 1;
+        $tcn_log = log( log($round_ploidy**($tcn*2/$round_ploidy))/log($round_ploidy) *2) / log(2) - 1 if (($chr eq "Y"||$chr eq "X"||$chr eq "chrY"||$chr eq "chrX") && ($sex eq "male"));
       }
       $tcn_log = (int($tcn_log*1000))/1000; 
-
       print "$name\t$chr\t$str\t$end\t$num_snps\t$tcn_log\n";
     }
   }
