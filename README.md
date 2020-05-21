@@ -9,7 +9,6 @@ A script to convert the output files from ACEseq to the seg format used as input
  - homozygous deletions are set at a low number (-5)
  - homozygous deletions are determined when the TCN < 0.25
  - regions with less than 5 SNPs (i.e ACEseq cannot determine the TCN) are set to base ploidy
- - chrX/Y for males are corrected (using double observed ploidy)
 
 ## Prerequisites
 
@@ -27,7 +26,10 @@ A script to convert the output files from ACEseq to the seg format used as input
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+ - v1.1.1: removed rescaling for sex chromosomes as this has no effect on output
+ - v1.1.0: corrected log rebasing for non diploids
+ - v1.0.0: first working version (do not use) 
 
 ## Authors
 

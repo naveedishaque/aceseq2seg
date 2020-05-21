@@ -1,14 +1,5 @@
 #!/usr/bin/env perl
 
-## BEHAVIOUR
-##
-## Converts ACEseq files into seg files used by GISTIC
-## convests whole total copy number (TCN) values into log spac
-## log base is determined as the sample ploidy (or 2 if you assume diploid)
-## homozygous deletions are set at a low number (-5)
-## homozygous deletions are determined when the TCN < 0.25
-## regions with less than 3 SNPs (i.e ACEseq cannot determine the TCN) are set to base ploidy
-
 ###############
 ## LIBRARIES ##
 ###############
@@ -151,8 +142,7 @@ foreach my $sample_idx (0..($num_files-1)){
       }
       else {
         # rescale log change to reflect changes in log2 space
-        $tcn_log = log( log($round_ploidy**($tcn  /$round_ploidy))/log($round_ploidy) *2) / log(2) - 1;
-        $tcn_log = log( log($round_ploidy**($tcn*2/$round_ploidy))/log($round_ploidy) *2) / log(2) - 1 if (($chr eq "Y"||$chr eq "X"||$chr eq "chrY"||$chr eq "chrX") && ($sex eq "male"));
+        $tcn_log = log( log($round_ploidy**($tcn/$round_ploidy))/log($round_ploidy) *2) / log(2) - 1;
       }
       $tcn_log = (int($tcn_log*1000))/1000; 
       print "$name\t$chr\t$str\t$end\t$num_snps\t$tcn_log\n";
