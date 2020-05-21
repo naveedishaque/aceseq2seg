@@ -11,11 +11,11 @@ A script to convert the output files from ACEseq to the seg format used as input
  - regions with less than 5 SNPs (i.e ACEseq cannot determine the TCN) are set to base ploidy
  - chrX/Y for males are corrected (using double observed ploidy)
 
-## software requirements dependecies
+## Prerequisites
 
-Developed using perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi
+- Developed using perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linux-gnu-thread-multi
 
-## usage
+## Usage
 
 ```
   perl aceseq2seg.pl
@@ -24,3 +24,19 @@ Developed using perl 5, version 26, subversion 1 (v5.26.1) built for x86_64-linu
         -l [log base, either 2 or 'given' - DEFAULT: given]
         -o [output file - DEFAULT: STDOUT]
 ```
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+Naveed Ishaque
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+## Acknowledgments
+
+Dorett I Odoni
